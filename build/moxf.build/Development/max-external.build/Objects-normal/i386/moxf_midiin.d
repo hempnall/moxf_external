@@ -1,0 +1,37 @@
+dependencies: \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/moxf_midiin.c \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/macho-prefix.pch \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/moxf_midiin.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_common.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/max_types.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_prefix.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_mess.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_maxtypes.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_byteorder.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_sysmem.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_sysfile.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_systime.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_expr.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_path.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_wind.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_proto.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_atomarray.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_atombuf.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_obstring.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_hashtab.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_linklist.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_atomic.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_dictionary.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_obex_util.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/commonsyms.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_strings.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_obex.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_preprocessor.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_systhread.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_drag.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/jpatcher_api.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/jpatcher_syms.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/../../c74support/max-includes/ext_charset.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/moxf_interface.h \
+  /Users/jameshook/dev/src/max-sdk-7.3.3/source/moxf/moxf/midi/midi_typedefs.h
