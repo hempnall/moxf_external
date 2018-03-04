@@ -8,6 +8,10 @@
 #ifndef midi_typedefs_h
 #define midi_typedefs_h
 
+#ifndef MAX_OBJ_NAME_SUFFIX
+#define MAX_OBJ_NAME_SUFFIX ""
+#endif
+
 #include <inttypes.h>
 
 typedef unsigned int midiportindex_t;

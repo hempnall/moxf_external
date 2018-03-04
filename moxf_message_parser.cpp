@@ -36,8 +36,6 @@ void parse_moxf_editor_message(midimessage_t* msg , midi_callback_t cb , void* u
         return;
     }
 
-    
     cb(hi,mid,lo,val,userdata)  ;
-
-    
+   
 }

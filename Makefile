@@ -1,8 +1,7 @@
 FILE_SUFFIX:=$(shell date "+%s")
 TARGET:=moxf
 OUTPUT_DIR:=build/Development
-
-
+RELEASE_DIR:=../release
 
 
 $(OUTPUT_DIR)/$(TARGET)$(FILE_SUFFIX).mxo: $(OUTPUT_DIR)/$(TARGET).mxo 
@@ -16,5 +15,10 @@ clean:
 $(OUTPUT_DIR)/$(TARGET).mxo: $(TARGET).xcodeproj
 	xcodebuild -project $<  \
     GCC_PREPROCESSOR_DEFINITIONS='MAX_OBJ_NAME_SUFFIX="\"'$(FILE_SUFFIX)'\""'
+
+
+install: 
+        DSTROOT=../release xcodebuild clean build install -project moxf.xcodeproj
+
 
 

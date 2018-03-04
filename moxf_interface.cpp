@@ -13,7 +13,6 @@ RtMidiIn midiInterface_in;
 RtMidiOut editorInterface_out;
 RtMidiOut midiInterface_out;
 
-
 #include <string>
 #include <iostream>
 
@@ -97,15 +96,23 @@ void* close_input_interface( void* intf)
     return intf;
 }
 
-void* open_output_interface( void* intf , char* name)
+
+void* open_output_editor_interface()
 {
-    RtMidiOut* output = static_cast<RtMidiOut*>( intf );
-    if (!output->isPortOpen()) {
-        std::string portName(name);
-        open_midi_port(  *output , portName );
+    if (!editorInterface_out.isPortOpen()) {
+        open_midi_port( editorInterface_out , MOXF_EDITOR_PORT );
     }
-    return output->isPortOpen() ? intf : NULL_INTERFACE;
+    return editorInterface_out.isPortOpen() ? &editorInterface_out : NULL_INTERFACE;
 }
+
+void* open_output_midi_interface()
+{
+    if (!midiInterface_out.isPortOpen()) {
+        open_midi_port( midiInterface_out , MOXF_SYSEX_BULK_PORT );
+    }
+    return midiInterface_out.isPortOpen() ? &midiInterface_out : NULL_INTERFACE;
+}
+
 
 void* close_output_interface( void* intf)
 {
@@ -113,3 +120,40 @@ void* close_output_interface( void* intf)
     output->closePort();
     return intf;
 }
+
+void send_midi_setting(
+    midibyte_t chn ,
+    midibyte_t hi ,
+    midibyte_t lo ,
+    midibyte_t sz ,
+    midiword_t val
+    )
+{
+    if (chn > 0xf) return;
+    midibyte_t device_id = 0x10;
+
+    if (sz == 2) {
+        if (val > 0xffff) return;
+        midimessage_t two_byte_editor_value {SYSEX_START , MANUFACTURER , device_id ,MODEL_HI , MODEL_LO ,0,ADDR_HI , ADDR_MID, ADDR_LO, VAL_HI ,VAL_LO, SYSEX_END };
+        two_byte_editor_value[HIGH_OFFSET] = hi;
+        two_byte_editor_value[CHANNEL_OFFSET] = chn;
+        two_byte_editor_value[LOW_OFFSET] = lo;
+        two_byte_editor_value[VALUE_OFFSET] = HI_BYTE( val );
+        two_byte_editor_value[VALUE_OFFSET+1] = LO_BYTE( val );
+        editorInterface_out.sendMessage(&two_byte_editor_value);
+        
+    } else if (sz == 1 ) {
+        if (val > 0xff) return;
+        midimessage_t one_byte_editor_value {SYSEX_START , MANUFACTURER , device_id ,MODEL_HI , MODEL_LO ,0,ADDR_HI , ADDR_MID, ADDR_LO,VAL_LO, SYSEX_END };
+        one_byte_editor_value[HIGH_OFFSET] = hi;
+        one_byte_editor_value[CHANNEL_OFFSET] = chn;
+        one_byte_editor_value[LOW_OFFSET] = lo;
+        one_byte_editor_value[VALUE_OFFSET] = LO_BYTE( val );
+        editorInterface_out.sendMessage(&one_byte_editor_value);
+        
+    } else {
+        return;
+    }
+}
+
+

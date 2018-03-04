@@ -9,13 +9,9 @@
 #define moxf_midiin_h
 
 
-#ifndef MAX_OBJ_NAME_SUFFIX
-#define MAX_OBJ_NAME_SUFFIX ""
-#endif
-
 #include "ext.h"                            // standard Max include, always required
 #include "ext_obex.h"                        // required for new style Max object
-#include "moxf_interface.h"
+#include "midi/midi_typedefs.h"
 
 typedef struct _moxf_midiin
 {
@@ -28,10 +24,13 @@ typedef struct _moxf_midiin
     
 } t_moxf_midiin;
 
+BEGIN_USING_C_LINKAGE
+
 void *moxf_midiin_new(t_symbol *s, long argc, t_atom *argv);
 void moxf_midiin_free(t_moxf_midiin *x);
 void moxf_midiin_emitvalue( t_moxf_midiin* , midichannel_t chn, t_symbol *msg, midiword_t val );
 t_class* moxf_midiin_build_class();
 
+END_USING_C_LINKAGE
 
 #endif /* moxf_midiin_h */

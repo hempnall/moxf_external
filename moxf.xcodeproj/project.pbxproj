@@ -10,12 +10,14 @@
 		ED7E9C902048390B00BB5579 /* moxf.c in Sources */ = {isa = PBXBuildFile; fileRef = ED7E9C8F2048390B00BB5579 /* moxf.c */; };
 		ED7E9C9320483AEB00BB5579 /* rtmidi_utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = ED7E9C9120483AEA00BB5579 /* rtmidi_utils.hpp */; };
 		ED7E9C9420483AEB00BB5579 /* rtmidi_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7E9C9220483AEA00BB5579 /* rtmidi_utils.cpp */; };
-		ED7E9C9D20483B2800BB5579 /* moxf_types.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7E9C9820483B2800BB5579 /* moxf_types.h */; };
 		ED7E9CA12048525900BB5579 /* moxf_midiin.c in Sources */ = {isa = PBXBuildFile; fileRef = ED7E9C9F2048525900BB5579 /* moxf_midiin.c */; };
 		ED7E9CA22048525900BB5579 /* moxf_midiin.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7E9CA02048525900BB5579 /* moxf_midiin.h */; };
 		ED7E9CA7204864E700BB5579 /* moxf_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED7E9CA6204864E700BB5579 /* moxf_interface.cpp */; };
 		ED84FDF1204AA32900738825 /* moxf_message_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED84FDEF204AA32900738825 /* moxf_message_parser.cpp */; };
 		ED84FDF2204AA32900738825 /* moxf_message_parser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = ED84FDF0204AA32900738825 /* moxf_message_parser.hpp */; };
+		ED84FDF6204B4EF700738825 /* moxf_midiout.c in Sources */ = {isa = PBXBuildFile; fileRef = ED84FDF4204B4EF700738825 /* moxf_midiout.c */; };
+		ED84FDF7204B4EF700738825 /* moxf_midiout.h in Headers */ = {isa = PBXBuildFile; fileRef = ED84FDF5204B4EF700738825 /* moxf_midiout.h */; };
+		ED84FDFB204B568500738825 /* moxf_midi_data.c in Sources */ = {isa = PBXBuildFile; fileRef = ED84FDFA204B568500738825 /* moxf_midi_data.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +26,6 @@
 		ED7E9C8F2048390B00BB5579 /* moxf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = moxf.c; sourceTree = "<group>"; };
 		ED7E9C9120483AEA00BB5579 /* rtmidi_utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rtmidi_utils.hpp; sourceTree = "<group>"; };
 		ED7E9C9220483AEA00BB5579 /* rtmidi_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rtmidi_utils.cpp; sourceTree = "<group>"; };
-		ED7E9C9820483B2800BB5579 /* moxf_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = moxf_types.h; sourceTree = "<group>"; };
 		ED7E9C9F2048525900BB5579 /* moxf_midiin.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = moxf_midiin.c; sourceTree = "<group>"; };
 		ED7E9CA02048525900BB5579 /* moxf_midiin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moxf_midiin.h; sourceTree = "<group>"; };
 		ED7E9CA5204863E400BB5579 /* moxf_interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moxf_interface.h; sourceTree = "<group>"; };
@@ -32,6 +33,10 @@
 		ED84FDEF204AA32900738825 /* moxf_message_parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moxf_message_parser.cpp; sourceTree = "<group>"; };
 		ED84FDF0204AA32900738825 /* moxf_message_parser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = moxf_message_parser.hpp; sourceTree = "<group>"; };
 		ED84FDF3204AA5F300738825 /* midi_typedefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = midi_typedefs.h; sourceTree = "<group>"; };
+		ED84FDF4204B4EF700738825 /* moxf_midiout.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = moxf_midiout.c; sourceTree = "<group>"; };
+		ED84FDF5204B4EF700738825 /* moxf_midiout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moxf_midiout.h; sourceTree = "<group>"; };
+		ED84FDF9204B560300738825 /* moxf_midi_data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moxf_midi_data.h; sourceTree = "<group>"; };
+		ED84FDFA204B568500738825 /* moxf_midi_data.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = moxf_midi_data.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +53,9 @@
 		089C166AFE841209C02AAC07 /* iterator */ = {
 			isa = PBXGroup;
 			children = (
+				ED84FDF8204B55D900738825 /* data */,
+				ED84FDF4204B4EF700738825 /* moxf_midiout.c */,
+				ED84FDF5204B4EF700738825 /* moxf_midiout.h */,
 				ED84FDEF204AA32900738825 /* moxf_message_parser.cpp */,
 				ED84FDF0204AA32900738825 /* moxf_message_parser.hpp */,
 				ED7E9CA6204864E700BB5579 /* moxf_interface.cpp */,
@@ -74,11 +82,19 @@
 			isa = PBXGroup;
 			children = (
 				ED7E9C9220483AEA00BB5579 /* rtmidi_utils.cpp */,
-				ED7E9C9820483B2800BB5579 /* moxf_types.h */,
 				ED7E9C9120483AEA00BB5579 /* rtmidi_utils.hpp */,
 				ED84FDF3204AA5F300738825 /* midi_typedefs.h */,
 			);
 			path = midi;
+			sourceTree = "<group>";
+		};
+		ED84FDF8204B55D900738825 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				ED84FDF9204B560300738825 /* moxf_midi_data.h */,
+				ED84FDFA204B568500738825 /* moxf_midi_data.c */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,7 +104,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED7E9C9D20483B2800BB5579 /* moxf_types.h in Headers */,
+				ED84FDF7204B4EF700738825 /* moxf_midiout.h in Headers */,
 				ED7E9C9320483AEB00BB5579 /* rtmidi_utils.hpp in Headers */,
 				ED7E9CA22048525900BB5579 /* moxf_midiin.h in Headers */,
 				ED84FDF2204AA32900738825 /* moxf_message_parser.hpp in Headers */,
@@ -169,8 +185,10 @@
 				ED7E9CA7204864E700BB5579 /* moxf_interface.cpp in Sources */,
 				ED84FDF1204AA32900738825 /* moxf_message_parser.cpp in Sources */,
 				ED7E9C9420483AEB00BB5579 /* rtmidi_utils.cpp in Sources */,
+				ED84FDF6204B4EF700738825 /* moxf_midiout.c in Sources */,
 				ED7E9C902048390B00BB5579 /* moxf.c in Sources */,
 				ED7E9CA12048525900BB5579 /* moxf_midiin.c in Sources */,
+				ED84FDFB204B568500738825 /* moxf_midi_data.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
