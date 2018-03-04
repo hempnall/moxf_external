@@ -2,7 +2,7 @@
 
 Allow Ableton Max4Live Control from Yamaha's MOXF class of keyboards
 
->> I've only developed this on Mac OS X - so this only apples to Mac - One day I'll have a look at Windows
+> I've only developed this on Mac OS X - so this only apples to Mac - One day I'll have a look at Windows
 
 # background
 
