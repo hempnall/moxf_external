@@ -13,6 +13,8 @@
 #include "ext_obex.h"                        // required for new style Max object
 #include "midi/midi_typedefs.h"
 
+#define ALL_CHANNELS -1
+
 typedef struct _moxf_midiin
 {
     t_object    ob;

@@ -7,84 +7,81 @@
 
 #include "moxf_midi_data.h"
 
-moxf_message part_msg_symbol[ MAX_LO_ARRAY_DIMENSION ];
-moxf_message arp_msg_symbol[ MAX_LO_ARRAY_DIMENSION ];
+#define HIGH_ADDRESS_SIZE 0x80
+#define LOW_ADDRESS_SIZE 0xff
+
+moxf_message* msg_symbols[HIGH_ADDRESS_SIZE];
+moxf_message part_defs[LOW_ADDRESS_SIZE];
+moxf_message arp_defs[LOW_ADDRESS_SIZE];
+
 t_symbol* null_str;
 
-#define END_MSG { 0,0,0,0}
+#define END_MSG { 0,0,0,0,0,0}
 
-moxf_message part_msg_defs[] = {
-    { 0x01 , "bank_select_msb" ,0, 1, 0 },
-    { 0x02 , "bank_select_lsb",0 , 1 , 0 },
-    { 0x03 , "program_number" ,0 , 1 , 0 },
-    { 0x04 , "receive_channel",0 , 1 , 0 },
-    { 0x0e , "volume" ,0, 1 , 0 },
-    { 0x0f , "pan" , 0,1 ,0  },
+moxf_message msg_defs[] = {
+    { 0x37 , 0x01 , "bank_select_msb" ,0, 1, 0 },
+    { 0x37 , 0x02 , "bank_select_lsb",0 , 1 , 0 },
+    { 0x37 , 0x03 , "program_number" ,0 , 1 , 0 },
+    { 0x37 , 0x04 , "receive_channel",0 , 1 , 0 },
+    { 0x37 , 0x0e , "volume" ,0, 1 , 0 },
+    { 0x37 , 0x0f , "pan" , 0,1 ,0  },
     END_MSG
 };
 
-moxf_message arp_msg_defs[] = {
-    END_MSG
-};
-
-
-void populate_symbol_array(  moxf_message* msg_array ,  moxf_message* output     )
+void initialize_symbol_array( moxf_message* arr , size_t sz )
 {
-    int idx;
-    moxf_message* start = msg_array;
-    moxf_message null_msg = { 0,"",null_str,0,0 };
+    moxf_message null_msg = { 0, 0,"",null_str,0,0 };
+    int i;
+    for (int i =0 ; i < 0xff ;++i) {
+        arr[i] = null_msg;
+    }
+}
 
-    for (idx = 0 ;  idx < MAX_LO_ARRAY_DIMENSION ; idx++)
-    {
-        output[idx] = null_msg;
-    }
-    
-    while (start->size != 0 ) {
-        start->symbol = gensym(start->name);
-        output[ start->offset ] = *start;
-        start++;
-    }
+bool is_end_message( moxf_message* msg )
+{
+    return ( msg->high_add==0 && msg->offset == 0 && msg->name == 0 && msg->symbol == 0 && msg->translate_fn == 0);
 }
 
 void populate_symbol_arrays()
 {
-    populate_symbol_array(part_msg_defs, part_msg_symbol);
-    populate_symbol_array(arp_msg_defs, arp_msg_symbol);
+    null_str = gensym("");
+    int idx;
+    for (idx = 0 ; idx < sizeof(msg_symbols); ++idx) {
+        msg_symbols[idx] = NULL;
+    }
+    
+    initialize_symbol_array(part_defs, LOW_ADDRESS_SIZE);
+    initialize_symbol_array(arp_defs, LOW_ADDRESS_SIZE);
+    msg_symbols[0x37] = part_defs;
+    msg_symbols[0x38] = arp_defs;
+    
+    moxf_message* start = msg_defs;
+    while (! is_end_message(start)) {
+        start->symbol = gensym(start->name);
+        msg_symbols[ start->high_add ][ start->offset ] = *start;
+        start++;
+    }
 }
 
 t_symbol* translate_symbol( midibyte_t hi , midibyte_t low)
 {
-    switch (hi)
-    {
-        case 0x37:
-            return part_msg_symbol[low].symbol;
-            break;
-        case 0x38:
-            return null_str;
-            break;
-        default:
-            return null_str;
-    }
+    moxf_message* m = msg_symbols[hi];
+    if (m==NULL) return null_str;
+    return msg_symbols[hi][low].symbol;
 }
 
-moxf_message* get_message_for_symbol( midibyte_t hi,t_symbol* sym )
+moxf_message* get_message_for_symbol( t_symbol* sym )
 {
-    moxf_message* moxf_msg;
-    
-    switch (hi)
-    {
-        case 0x37:
-            moxf_msg = part_msg_defs;
-            break;
-        case 0x38:
-            moxf_msg = arp_msg_defs;
-            break;
-        default:
-            return NULL;
-    }
-    while (moxf_msg->size != 0 ) {
-        if (moxf_msg->symbol == sym) return moxf_msg;
-        moxf_msg++;
+    moxf_message* start = msg_defs;
+    while (! is_end_message(start)) {
+        if (start->symbol == sym) return start;
+        start++;
     }
     return NULL;
+}
+
+long get_message_size( midibyte_t hi, midibyte_t lo )
+{
+    if (hi >= HIGH_ADDRESS_SIZE ) return 0;
+    return msg_symbols[hi][lo].size;
 }

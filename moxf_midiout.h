@@ -24,8 +24,9 @@ BEGIN_USING_C_LINKAGE
 
 void *moxf_midiout_new(t_symbol *s, long argc, t_atom *argv);
 void moxf_midiout_free(t_moxf_midiout *x);
-void moxf_midiout_recvvalue_sym( t_moxf_midiout* ,  long hi, long mid,t_symbol *msg,long val );
-void moxf_midiout_recvvalue_byte( t_moxf_midiout* , long hi, long mid,long lo, long sz, long val );
+void moxf_midiout_recvvalue_sym( t_moxf_midiout* ,  long mid,t_symbol *msg,long val );
+void moxf_midiout_recvvalue_byte( t_moxf_midiout* , long hi, long mid,long lo, long val );
+void moxf_midiout_recvvalue( t_moxf_midiout* , long hi, long mid,long lo, long sz, long val );
 t_class* moxf_midiout_build_class();
 
 END_USING_C_LINKAGE

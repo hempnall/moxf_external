@@ -65,13 +65,13 @@ void open_midi_port(  T& port , const std::string& port_name )
     port.openPort(idx);
 }
 
-
 void* open_input_editor_interface(   void* userData)
 {
+    editorInterface_in.cancelCallback();
+    editorInterface_in.setCallback(midiin_callback_editor_fn,userData);
+    
     if (!editorInterface_in.isPortOpen()) {
         open_midi_port(  editorInterface_in , MOXF_EDITOR_PORT );
-        editorInterface_in.cancelCallback();
-        editorInterface_in.setCallback(midiin_callback_editor_fn,userData);
         editorInterface_in.ignoreTypes(false);
     }
     return editorInterface_in.isPortOpen() ? &editorInterface_in : NULL_INTERFACE;
@@ -79,10 +79,11 @@ void* open_input_editor_interface(   void* userData)
 
 void* open_input_midi_interface(  void* userData)
 {
+    midiInterface_in.cancelCallback();
+    midiInterface_in.setCallback(midiin_callback_sysex_fn,userData);
+    
     if (!midiInterface_in.isPortOpen()) {
         open_midi_port(  midiInterface_in , MOXF_SYSEX_BULK_PORT );
-        midiInterface_in.cancelCallback();
-        midiInterface_in.setCallback(midiin_callback_sysex_fn,userData);
         midiInterface_in.ignoreTypes(false);
     }
     return midiInterface_in.isPortOpen() ? &midiInterface_in : NULL_INTERFACE;

@@ -14,6 +14,7 @@
 
 typedef struct _moxf_message
 {
+    uint16_t high_add;
     uint16_t offset;
     const char* name;
     t_symbol* symbol;
@@ -25,9 +26,10 @@ typedef struct _moxf_message
 #define ARP_PARAMETER_NAME_COUNT 0x46
 #define MAX_LO_ARRAY_DIMENSION 0xff
 
-void populate_symbol_array(  moxf_message* msg_array  ,  moxf_message* output      );
+
 void populate_symbol_arrays();
 t_symbol* translate_symbol( midibyte_t hi , midibyte_t low);
-moxf_message* get_message_for_symbol( midibyte_t hi,t_symbol* sym );
+moxf_message* get_message_for_symbol( t_symbol* sym );
+long get_message_size( midibyte_t hi, midibyte_t lo );
 
 #endif /* moxf_midi_data_h */

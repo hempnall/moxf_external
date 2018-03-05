@@ -31,10 +31,11 @@ void *moxf_midiin_new(t_symbol *s, long argc, t_atom *argv)
     t_moxf_midiin *x = NULL;
     
     if ((x = (t_moxf_midiin *)object_alloc(moxf_midiin_class))) {
-        x->moxf_setting_outlet = intout( (t_moxf_midiin*)  x );
         x->midi_sysex_in = open_input_midi_interface(x);
         x->midi_editor_in = open_input_editor_interface(x);
         x->moxf_setting_outlet = outlet_new(x, NULL);
+        x->channel_number = ALL_CHANNELS;
+        if (argc >= 1) x->channel_number = atom_getlong( &argv[0]);
         register_callback(master_midi_sysex_cb);
     }
     return (x);
@@ -54,6 +55,7 @@ t_class* moxf_midiin_build_class()  {
 
 void moxf_midiin_emitvalue( t_moxf_midiin* x, midichannel_t chn, t_symbol *msg, midiword_t val )
 {
+    if ( x->channel_number != ALL_CHANNELS && chn != x->channel_number) return;
     t_atom output[2];
     atom_setlong( &output[0] , chn);
     atom_setlong( &output[1] , val);
