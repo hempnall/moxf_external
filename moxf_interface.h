@@ -8,6 +8,15 @@
 #ifndef moxf_interface_h
 #define moxf_interface_h
 
+#include <stdio.h>
+
+#define LOG_FILE  "/Users/jameshook/max.log"
+#define DEBUGF(  msg )    { \
+FILE* logfile = fopen( LOG_FILE , "a" ); \
+fprintf( logfile , "[%s:%d] %s\n" , __FILE__ , __LINE__ ,  msg ); \
+fclose( logfile ); \
+}
+
 #define NULL_INTERFACE 0x0
 #define MOXF_EDITOR_PORT "Yamaha MOXF6/MOXF8 Port4"
 #define MOXF_SYSEX_BULK_PORT "Yamaha MOXF6/MOXF8 Port1"
@@ -23,7 +32,7 @@
 #define SYSEX_END 0xf7
 #define LO_BYTE(x) ( x &  0x00ff )
 #define HI_BYTE(x) ( ( x & 0xff00 ) >> 8 )
-
+#define ALL_CHANNELS -1
 #define VALUE_OFFSET 9
 #define CHANNEL_OFFSET 7
 #define HIGH_OFFSET 6
@@ -47,6 +56,8 @@ extern "C" {
     void register_callback( midi_callback_t fn );
     void register_debug_callback( debug_callback_t fn );
     void send_midi_setting(midibyte_t chn , midibyte_t hi , midibyte_t lo , midibyte_t sz ,midiword_t val );
+    long external_to_internal_midichannel( long external );
+    long internal_to_external_midichannel( long internal );
     
 
 #ifdef __cplusplus

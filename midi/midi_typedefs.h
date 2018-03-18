@@ -19,7 +19,10 @@ typedef unsigned char midibyte_t;
 typedef uint16_t midiword_t;
 typedef long midichannel_t;
 
-typedef void (*midi_callback_t)(midibyte_t high, midibyte_t mid , midibyte_t low, midiword_t val , void* userData );
+typedef void (*midi_callback_t)(midibyte_t high, midibyte_t mid , midibyte_t low, midiword_t val  );
 typedef void (*debug_callback_t)(char*,...);
+
+#define BEGIN_CRITICAL_SECTION( name )
+#define END_CRITICAL_SECTION( name )
 
 #endif /* midi_typedefs_h */

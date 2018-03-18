@@ -33,7 +33,7 @@ void midiin_callback_editor_fn(
     void* userdata)
 {
     if (NULL == g_master_midi_callback) return;
-    parse_moxf_editor_message(msg, g_master_midi_callback, userdata);
+    parse_moxf_editor_message(msg, g_master_midi_callback);
 }
 
 void midiin_callback_sysex_fn(
@@ -42,7 +42,7 @@ void midiin_callback_sysex_fn(
    void* userdata)
 {
     if (NULL == g_master_midi_callback) return;
-    g_master_midi_callback( 0x37 , 3 , 0x0f , 8 , userdata);
+    g_master_midi_callback( 0x37 , 3 , 0x0f , 8);
 }
 
 void register_callback( midi_callback_t fn )
@@ -157,4 +157,13 @@ void send_midi_setting(
     }
 }
 
+long external_to_internal_midichannel( long external )
+{
+    if ( external < 1 || external > 16 ) return ALL_CHANNELS;
+    return external - 1;
+}
 
+long internal_to_external_midichannel( long internal )
+{
+    return internal + 1;
+}

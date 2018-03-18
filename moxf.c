@@ -1,9 +1,9 @@
 /**
 	@file
-	dummy - a dummy object
-	jeremy bernstein - jeremy@bootsquad.com
+	moxf - a Max UI for Yamaha MOXF Keyboards
+	james hook
 
-	@ingroup	examples
+	@ingroup	moxf
 */
 
 
@@ -14,11 +14,14 @@
 #include "moxf_midiout.h"
 #include "data/moxf_midi_data.h"
 
+
 extern void* moxf_midiin_class;
 extern void* moxf_midiout_class;
 
 void ext_main(void *r)
 {
+    DEBUGF( "start" )
+    
 	t_class *c_midi_in;
     t_class *c_midi_out;
     

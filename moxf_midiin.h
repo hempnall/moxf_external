@@ -13,7 +13,7 @@
 #include "ext_obex.h"                        // required for new style Max object
 #include "midi/midi_typedefs.h"
 
-#define ALL_CHANNELS -1
+
 
 typedef struct _moxf_midiin
 {
@@ -21,7 +21,8 @@ typedef struct _moxf_midiin
     void*       midi_sysex_in;
     void*       midi_editor_in;
     void*       moxf_setting_outlet;
-    long        channel_number;
+    t_object*   midi_channel_attr;
+    long        midi_channel;
     midi_callback_t callback;
     
 } t_moxf_midiin;

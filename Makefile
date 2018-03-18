@@ -6,10 +6,14 @@ RELEASE_DIR:=../release
 
 $(OUTPUT_DIR)/$(TARGET)$(FILE_SUFFIX).mxo: $(OUTPUT_DIR)/$(TARGET).mxo 
 	cp -r $< $@
+	#cp -r $< ../../../externals/$(TARGET)$(FILE_SUFFIX).mxo
+	#cp -r $< $(RELEASE_DIR)/$(TARGET)$(FILE_SUFFIX)
 	echo "wrote to moxf$@"
 
 clean:
 	rm -rf $(OUTPUT_DIR)/$(TARGET)*
+	rm -rf $(RELEASE_DIR)/*
+
 
 
 $(OUTPUT_DIR)/$(TARGET).mxo: $(TARGET).xcodeproj
