@@ -13,13 +13,34 @@ The MOXF uses 5 MIDI ports in total. Of these ports
 
 This Max external will utilise both of these ports to achieve its objectives.
 
-## usage
+## overview
 
 There are two max externals
 * moxf.midiin
 * moxf.midiout
 
-Typical usage takes the followin form:
+"moxf.midiin" will emit messages in the following form if and only if the incoming MIDI message matches the configured midi channel
+
+```
+param_name midi_channel value
+
+e.g.
+volume 2 67
+```
+These messages are received on Port 4 of the MOXF's USB MIDI Interface
+
+"moxf.midiout" will emit a message on the configured midi channel when it receives a message in the form
+
+```
+recvchnval param_name value
+
+e.g.
+recvchnval volume 43
+```
+
+## usage
+
+Typical usage takes the following form:
 1) add both externals to a patch
 2) configure midi channel attribute by sending a "midi_channel" attribute
 3) connect the output to a slider, dial etc
