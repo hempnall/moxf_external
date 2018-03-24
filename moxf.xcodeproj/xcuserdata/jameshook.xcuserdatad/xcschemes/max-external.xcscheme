@@ -24,8 +24,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2FBBEAD608F335360078DB84"
-               BuildableName = "moxf.mxo"
-               BlueprintName = "max-external"
+               BuildableName = "moxf.midiin.mxo"
+               BlueprintName = "max-external midiin"
                ReferencedContainer = "container:moxf.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FBBEAD608F335360078DB84"
-            BuildableName = "moxf.mxo"
-            BlueprintName = "max-external"
+            BuildableName = "moxf.midiin.mxo"
+            BlueprintName = "max-external midiin"
             ReferencedContainer = "container:moxf.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2FBBEAD608F335360078DB84"
-            BuildableName = "moxf.mxo"
-            BlueprintName = "max-external"
+            BuildableName = "moxf.midiin.mxo"
+            BlueprintName = "max-external midiin"
             ReferencedContainer = "container:moxf.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

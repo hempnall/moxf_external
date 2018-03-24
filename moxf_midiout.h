@@ -31,6 +31,7 @@ void moxf_midiout_recvvalue_sym( t_moxf_midiout* ,  long mid,t_symbol *msg,long 
 void moxf_midiout_recvvalue_byte( t_moxf_midiout* , long hi, long mid,long lo, long val );
 void moxf_midiout_recvvalue( t_moxf_midiout* , long hi, long mid,long lo, long sz, long val );
 t_class* moxf_midiout_build_class();
+t_max_err midiout_midi_chn_attr_set( t_moxf_midiout* obj , void* attr , long ac , t_atom* atom_v );
 
 END_USING_C_LINKAGE
 

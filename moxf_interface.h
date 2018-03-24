@@ -9,11 +9,15 @@
 #define moxf_interface_h
 
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 
 #define LOG_FILE  "/Users/jameshook/max.log"
 #define DEBUGF(  msg )    { \
 FILE* logfile = fopen( LOG_FILE , "a" ); \
-fprintf( logfile , "[%s:%d] %s\n" , __FILE__ , __LINE__ ,  msg ); \
+char s_time[1000]; \
+time_t current_time; current_time = time(NULL);struct tm * p = localtime(&current_time); strftime(s_time, 1000, "%B %d %Y %T", p);\
+fprintf( logfile , "[%s][%s:%d] %s\n" , s_time ,  __FILE__ , __LINE__ ,  msg ); \
 fclose( logfile ); \
 }
 

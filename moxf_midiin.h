@@ -33,6 +33,7 @@ void *moxf_midiin_new(t_symbol *s, long argc, t_atom *argv);
 void moxf_midiin_free(t_moxf_midiin *x);
 void moxf_midiin_emitvalue( t_moxf_midiin* , midichannel_t chn, t_symbol *msg, midiword_t val );
 t_class* moxf_midiin_build_class();
+t_max_err midiin_midi_chn_attr_set( t_moxf_midiin* obj , void* attr , long ac , t_atom* atom_v );
 
 END_USING_C_LINKAGE
 

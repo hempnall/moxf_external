@@ -15,7 +15,6 @@ extern t_symbol* null_str;
 extern t_symbol** part_msg_symbol;
 
 void* object_callback_table[16];
-t_object* midi_inchn_attr;
 
 void initialise_object_callback_table()
 {
@@ -62,7 +61,8 @@ void master_midi_sysex_cb(midibyte_t high, midibyte_t mid , midibyte_t low , mid
 
 void moxf_midiin_free(t_moxf_midiin *x)
 {
-    remove_object_from_table(x->midi_channel);
+    DEBUGF("free_in_class")
+   // remove_object_from_table(x->midi_channel);
 }
 
 t_max_err midiin_midi_chn_attr_set( t_moxf_midiin* obj , void* attr , long ac , t_atom* atom_v )
@@ -72,33 +72,37 @@ t_max_err midiin_midi_chn_attr_set( t_moxf_midiin* obj , void* attr , long ac , 
     remove_object_from_table( obj->midi_channel );
     obj->midi_channel = val;
     add_object_to_callback_table(val, obj);
+    return MAX_ERR_NONE;
 }
 
 void *moxf_midiin_new(t_symbol *s, long argc, t_atom *argv)
 {
+    DEBUGF("new_in_class")
     t_moxf_midiin *x = NULL;
-    
     
     if ((x = (t_moxf_midiin *)object_alloc(moxf_midiin_class))) {
         x->midi_channel = ALL_CHANNELS;
         x->midi_sysex_in = open_input_midi_interface(x);
         x->midi_editor_in = open_input_editor_interface(x);
         x->moxf_setting_outlet = outlet_new(x, NULL);
-        object_addattr(x,midi_inchn_attr);
+        
     }
     return (x);
 }
 
 t_class* moxf_midiin_build_class()  {
-    register_debug_callback(post);
+    DEBUGF("build_in_class")
+
     initialise_object_callback_table();
     register_callback(master_midi_sysex_cb);
+    t_object* midi_chn_attr =  attribute_new( "midi_channel" , gensym("long") ,ATTR_FLAGS_NONE , NULL, midiin_midi_chn_attr_set );
+
     
     null_str = gensym("");
-    t_class* class = class_new("moxf.midiin"  MAX_OBJ_NAME_SUFFIX , (method)moxf_midiin_new, (method)moxf_midiin_free, (long)sizeof(t_moxf_midiin),
+    t_class* class = class_new( "moxf.midiin", (method)moxf_midiin_new, (method)moxf_midiin_free, (long)sizeof(t_moxf_midiin),
               0L /* leave NULL!! */, A_GIMME, 0);
-    midi_inchn_attr  = attribute_new( "midi_channel" , gensym("long") ,ATTR_FLAGS_NONE , NULL, midiin_midi_chn_attr_set );
     class_addmethod(class, (method) moxf_midiin_emitvalue, "emitvalue", A_LONG,A_SYM,A_LONG,0);
+    class_addattr(class,midi_chn_attr);
     
     return class;
 }

@@ -26,14 +26,20 @@ void ext_main(void *r)
     t_class *c_midi_out;
     
     populate_symbol_arrays();
-    
-    c_midi_in = moxf_midiin_build_class();   
+
+#ifdef BUILD_MIDIIN
+    c_midi_in = moxf_midiin_build_class();
 	class_register(CLASS_BOX, c_midi_in);
 	moxf_midiin_class = c_midi_in;
+#endif
     
+#ifdef BUILD_MIDIOUT
     c_midi_out = moxf_midiout_build_class();
     class_register(CLASS_BOX, c_midi_out);
     moxf_midiout_class = c_midi_out;
+#endif
+    
+    DEBUGF("end")
 }
 
 
