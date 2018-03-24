@@ -57,4 +57,5 @@ E.g.
 
 ![sub patcher](./resources/subpatcher.png)
 
+The JSON text version of these sub patchers are available in the resources subfolder of this repository.
 
